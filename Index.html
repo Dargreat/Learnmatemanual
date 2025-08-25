@@ -1,0 +1,1861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Learnmate — Complete User Manual</title>
+  <style>
+    /* Reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: #0b3d2e; /* deep green text for headings */
+      background: #0BA360; /* primary green background */
+      background: linear-gradient(135deg, #0BA360 0%, #138A5D 40%, #0BA360 100%);
+    }
+
+    /* Brand (top-left) */
+    .brand {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      color: #ffffff;
+      user-select: none;
+      line-height: 1.1;
+      z-index: 10;
+    }
+    .brand__title {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+    }
+    .brand__subtitle {
+      margin: 2px 0 0 0;
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    /* Centered white box */
+    .wrap {
+      min-height: 100%;
+      display: grid;
+      place-items: center;
+      padding: 72px 16px 24px;
+    }
+    .card {
+      width: 900px; /* Slightly wider for more content */
+      max-width: 95%; /* Prevent overflow on very small screens */
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      padding: 32px;
+      border: 2px solid rgba(11, 61, 46, 0.08);
+    }
+
+    .card h1 {
+      margin: 0 0 12px;
+      font-size: 28px;
+      color: #0b3d2e;
+    }
+    
+    .card h2 {
+      margin: 24px 0 8px;
+      font-size: 22px;
+      color: #0b3d2e;
+      border-bottom: 2px solid #0BA360;
+      padding-bottom: 6px;
+    }
+    
+    .card h3 {
+      margin: 20px 0 6px;
+      font-size: 18px;
+      color: #0b3d2e;
+    }
+    
+    .card h4 {
+      margin: 16px 0 6px;
+      font-size: 16px;
+      color: #0b3d2e;
+    }
+    
+    .card p, .card li {
+      color: #1b1b1b;
+      line-height: 1.6;
+      font-size: 16px;
+      word-wrap: break-word; /* ensures long words wrap */
+    }
+    
+    .card ul, .card ol {
+      padding-left: 24px;
+    }
+    
+    .card li {
+      margin-bottom: 8px;
+    }
+
+    .divider {
+      height: 2px;
+      background: linear-gradient(90deg, #0BA360, rgba(11,163,96,0.2));
+      border-radius: 2px;
+      margin: 16px 0;
+    }
+    
+    .note {
+      background-color: #f0f9f5;
+      border-left: 4px solid #0BA360;
+      padding: 12px 16px;
+      margin: 16px 0;
+      border-radius: 4px;
+    }
+    
+    .warning {
+      background-color: #fff5f5;
+      border-left: 4px solid #e53e3e;
+      padding: 12px 16px;
+      margin: 16px 0;
+      border-radius: 4px;
+    }
+    
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin: 16px 0;
+    }
+    
+    .feature-item {
+      background-color: #f0f9f5;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #d4ede3;
+    }
+    
+    .feature-item h4 {
+      margin: 0 0 8px 0;
+      color: #0b3d2e;
+    }
+
+    .scrollbox {
+      max-height: 70vh;
+      overflow: auto;
+      padding-right: 6px;
+    }
+    
+    .toc {
+      background-color: #f0f9f5;
+      padding: 16px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+    }
+    
+    .toc h3 {
+      margin-top: 0;
+    }
+    
+    .toc ul {
+      columns: 2;
+      column-gap: 20px;
+    }
+    
+    .toc li {
+      break-inside: avoid;
+    }
+    
+    .step-number {
+      display: inline-block;
+      width: 28px;
+      height: 28px;
+      background-color: #0BA360;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 28px;
+      margin-right: 8px;
+      font-weight: bold;
+    }
+    
+    .admin-section {
+      background-color: #f8f5ff;
+      border-left: 4px solid #7c4dff;
+      padding: 12px 16px;
+      margin: 16px 0;
+      border-radius: 4px;
+    }
+    
+    .technical-section {
+      background-color: #f0f4f8;
+      border-left: 4px solid #4a5568;
+      padding: 12px 16px;
+      margin: 16px 0;
+      border-radius: 4px;
+    }
+    
+    .code-block {
+      background-color: #2d3748;
+      color: #e2e8f0;
+      padding: 12px;
+      border-radius: 4px;
+      overflow-x: auto;
+      font-family: monospace;
+      font-size: 14px;
+      margin: 16px 0;
+    }
+    
+    .section-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid #e2e8f0;
+    }
+    
+    .nav-button {
+      background-color: #0BA360;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    
+    .nav-button:hover {
+      background-color: #088451;
+    }
+
+    a, button { outline-color: #0BA360; }
+
+/* Media Queries for Responsive Design */
+@media (max-width: 1200px) {
+  .card {
+    width: 85%;
+    padding: 28px;
+  }
+  
+  .feature-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 992px) {
+  .card {
+    width: 90%;
+    padding: 24px;
+  }
+  
+  .brand {
+    position: relative;
+    text-align: center;
+    margin-bottom: 20px;
+    left: 0;
+    top: 0;
+  }
+  
+  .wrap {
+    padding: 20px 16px 24px;
+  }
+  
+  .toc ul {
+    columns: 1;
+  }
+  
+  .feature-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .card h1 {
+    font-size: 26px;
+  }
+  
+  .card h2 {
+    font-size: 22px;
+  }
+  
+  .card h3 {
+    font-size: 19px;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 95%;
+    padding: 20px;
+    border-radius: 16px;
+  }
+  
+  .card h1 {
+    font-size: 24px;
+  }
+  
+  .card h2 {
+    font-size: 20px;
+  }
+  
+  .card h3 {
+    font-size: 18px;
+  }
+  
+  .card p, .card li {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  
+  .scrollbox {
+    max-height: 65vh;
+  }
+  
+  .code-block {
+    font-size: 13px;
+    padding: 10px;
+  }
+  
+  .note, .warning, .admin-section, .technical-section {
+    padding: 10px 14px;
+  }
+  
+  .section-nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .nav-button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 576px) {
+  body {
+    font-size: 14px;
+  }
+  
+  .card {
+    width: 98%;
+    padding: 16px;
+    border-radius: 12px;
+  }
+  
+  .card h1 {
+    font-size: 22px;
+  }
+  
+  .card h2 {
+    font-size: 19px;
+  }
+  
+  .card h3 {
+    font-size: 17px;
+  }
+  
+  .card h4 {
+    font-size: 16px;
+  }
+  
+  .card p, .card li {
+    font-size: 14px;
+  }
+  
+  .brand__title {
+    font-size: 20px;
+  }
+  
+  .brand__subtitle {
+    font-size: 13px;
+  }
+  
+  .scrollbox {
+    max-height: 60vh;
+    padding-right: 4px;
+  }
+  
+  .toc {
+    padding: 12px;
+  }
+  
+  .code-block {
+    font-size: 12px;
+    padding: 8px;
+    overflow-x: auto;
+  }
+  
+  .step-number {
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 14px;
+  }
+  
+  .divider {
+    margin: 12px 0;
+  }
+}
+
+@media (max-width: 400px) {
+  .card {
+    padding: 12px;
+  }
+  
+  .card h1 {
+    font-size: 20px;
+  }
+  
+  .card h2 {
+    font-size: 18px;
+  }
+  
+  .card h3 {
+    font-size: 16px;
+  }
+  
+  .card ul, .card ol {
+    padding-left: 20px;
+  }
+  
+  .feature-item {
+    padding: 10px;
+  }
+  
+  .note, .warning, .admin-section, .technical-section {
+    padding: 8px 12px;
+  }
+}
+
+/* For very tall screens */
+@media (min-height: 1000px) {
+  .scrollbox {
+    max-height: 80vh;
+  }
+}
+
+/* For very short screens */
+@media (max-height: 600px) {
+  .scrollbox {
+    max-height: 55vh;
+  }
+}
+
+/* Print styles */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+  
+  .brand {
+    color: black;
+    position: static;
+    text-align: center;
+  }
+  
+  .card {
+    box-shadow: none;
+    border: 1px solid #ddd;
+    width: 100%;
+  }
+  
+  .scrollbox {
+    max-height: none;
+    overflow: visible;
+  }
+  
+  .nav-button, .section-nav {
+    display: none;
+  }
+  
+  .divider {
+    background: #ccc;
+  }
+}
+  </style>
+</head>
+<body>
+  <header class="brand" aria-label="Site brand">
+    <h1 class="brand__title">Learnmate</h1>
+    <p class="brand__subtitle">Complete User Manual</p>
+  </header>
+
+  <main class="wrap">
+    <section class="card" aria-label="Manual content area">
+      <h1>Learnmate Complete User Manual</h1>
+      <p><strong>Version:</strong> 1.0 | <strong>Date:</strong> October 26, 2023 | <strong>Status:</strong> Final</p>
+      
+      <div class="divider" role="presentation"></div>
+      
+      <div class="scrollbox">
+        <div class="toc">
+          <h3>Table of Contents</h3>
+          <ul>
+            <li><a href="#project-overview">1. Project Overview</a></li>
+            <li><a href="#security">2. Security: Supabase Anon Key & RLS</a></li>
+            <li><a href="#technology-stack">3. Technology Stack & Architecture</a></li>
+            <li><a href="#frontend">4. Frontend Implementation</a></li>
+            <li><a href="#backend">5. Backend Infrastructure</a></li>
+            <li><a href="#database">6. Database Design & Structure</a></li>
+            <li><a href="#authentication">7. Authentication & Security</a></li>
+            <li><a href="#admin">8. Admin Panel & Management</a></li>
+            <li><a href="#personalization">9. Personalization Engine</a></li>
+            <li><a href="#video">10. Video Management System</a></li>
+            <li><a href="#progress">11. Progress Tracking & Analytics</a></li>
+            <li><a href="#realtime">12. Real-time Features</a></li>
+            <li><a href="#deployment">13. Deployment & Scalability</a></li>
+            <li><a href="#innovation">14. Technical Innovation & Best Practices</a></li>
+            <li><a href="#conclusion">15. Conclusion</a></li>
+          </ul>
+        </div>
+        
+        <h2 id="project-overview">1. Project Overview</h2>
+        <p>This is a Personalized Learning Management System (LMS) designed as a modern, scalable web application that delivers customized educational content to users based on their preferences, learning style, and progress. The system combines video tutorials, interactive quizzes, and intelligent progress tracking to create a comprehensive learning experience.</p>
+        
+        <h3>1.1 Core Objectives</h3>
+        <ul>
+          <li><strong>Personalization:</strong> Deliver content tailored to individual user preferences and learning patterns</li>
+          <li><strong>Scalability:</strong> Handle multiple users simultaneously with real-time updates</li>
+          <li><strong>User Experience:</strong> Provide an intuitive, responsive interface across all devices</li>
+          <li><strong>Content Management:</strong> Enable administrators to easily manage tutorials, quizzes, and user data</li>
+          <li><strong>Progress Tracking:</strong> Monitor and visualize learning progress with detailed analytics</li>
+          <li><strong>Security:</strong> Using the Supabase Anon Key and Row Level Security (RLS)</li>
+        </ul>
+        
+        <div class="divider"></div>
+        
+        <h2 id="security">2. Security: Supabase Anon Key & Row Level Security</h2>
+        
+        <h3>2.1 What is the Supabase Anon Key?</h3>
+        <p>The Supabase anon key is a publishable API key that enables frontend applications to communicate directly with Supabase services (database, auth, storage) through the supabase-js client. It authenticates the application with an anonymous/public role, while user-specific permissions are determined by the user's session JWT after login. This key is safe to include in frontend code when Row Level Security (RLS) is properly configured.</p>
+        
+        <h3>2.2 Key Location in Project</h3>
+        <p>The anon key is located in: <code>src/integrations/supabase/client.ts</code></p>
+        <ul>
+          <li><strong>Supabase URL:</strong> <code>https://rkruujdojnhpqmfkcavm.supabase.co</code></li>
+          <li><strong>Current anon key:</strong> <code>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJrcnV1amRvam5ocHFtZmtjYXZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI5Mzg4MDksImV4cCI6MjA2ODUxNDgwOX0.iQOnKdDVpMLQdjGQYx5yNZb5XBso2EnEHCJBZmiV6JE</code></li>
+        </ul>
+        <p>This key is intentionally public and cannot bypass database security due to RLS policies that enforce per-row rules based on the authenticated user's JWT (<code>auth.uid()</code>).</p>
+        
+        <h3>2.3 Why Use the Anon Key Instead of a Custom API?</h3>
+        <ul>
+          <li><strong>Simplicity & Speed:</strong> Eliminates the need for maintaining a custom Node/Express API</li>
+          <li><strong>Built-in Security:</strong> RLS enforces access rules at the database level</li>
+          <li><strong>Real-time Capabilities:</strong> Native support for database subscriptions</li>
+          <li><strong>Reduced Complexity:</strong> Fewer servers to deploy and maintain</li>
+          <li><strong>Type Safety:</strong> Generated types help prevent development errors</li>
+        </ul>
+        <p>When NOT to use only the anon key: For operations requiring secret credentials (Stripe secrets, third-party API keys) or full-admin cross-tenant tasks, use Supabase Edge Functions with service role key on the server side.</p>
+        
+        <h3>2.4 Key Security Concepts</h3>
+        <p><strong>Anon Key vs. Service Role Key</strong></p>
+        <p><strong>Anon Key (Public):</strong></p>
+        <ul>
+          <li>Safe for frontend use</li>
+          <li>Limited to "anon" role permissions</li>
+          <li>Cannot override RLS</li>
+        </ul>
+        <p><strong>Service Role Key (Private):</strong></p>
+        <ul>
+          <li>Never use in client code</li>
+          <li>Bypasses RLS with full database access</li>
+          <li>Reserved for server-side operations only</li>
+        </ul>
+        
+        <h3>2.5 Authentication Flow with RLS</h3>
+        <ol>
+          <li>App initializes supabase-js client with anon key</li>
+          <li>User authentication provides session JWT (stored in localStorage via src/hooks/useAuth.ts)</li>
+          <li>Subsequent requests include user JWT with user ID (auth.uid())</li>
+          <li>RLS policies validate permissions per operation</li>
+          <li>Database enforces row-level access rules</li>
+        </ol>
+        
+        <h3>2.6 Row Level Security Implementation</h3>
+        <p>RLS policies ensure that users can only access data they're authorized to view or modify. Key policies include:</p>
+        
+        <p><strong>User Profiles</strong></p>
+        <ul>
+          <li>Users can only access their own profile records</li>
+          <li>Implemented via auth.uid() = id checks</li>
+          <li>Prevents users from viewing or editing other profiles</li>
+        </ul>
+        
+        <p><strong>User Progress</strong></p>
+        <ul>
+          <li>Users can only view and modify their own progress data</li>
+          <li>Enforced through user_id = auth.uid() matching</li>
+          <li>Blocks access to anyone else's progress</li>
+        </ul>
+        
+        <p><strong>Tutorials & Content</strong></p>
+        <ul>
+          <li>Read access to published content for authenticated users</li>
+          <li>Write operations restricted to admin users only</li>
+          <li>Role-based permissions through profile checks</li>
+          <li>Ensures only admins can create/edit/delete tutorials</li>
+        </ul>
+        
+        <p><strong>Storage Security</strong></p>
+        <ul>
+          <li>Public read access for published content</li>
+          <li>Restricted read for enrolled/entitled users</li>
+          <li>Write/delete operations limited to admins or content owners</li>
+          <li>Object-level permission validation</li>
+        </ul>
+        
+        <p><strong>Admin Privileges Implementation</strong></p>
+        <p>Administrative access is granted through:</p>
+        <ul>
+          <li>Role designation in user profiles (user_profiles.role = 'admin')</li>
+          <li>JWT-based role verification through RLS policies</li>
+          <li>Admin actions use the same anon key but elevated privileges through JWT</li>
+          <li>No RLS bypass from client applications</li>
+        </ul>
+        
+        <h3>2.7 Security Advantages Over Custom API</h3>
+        <ul>
+          <li><strong>Database-Level Enforcement:</strong> Security rules are applied at the data layer itself</li>
+          <li><strong>Reduced Attack Surface:</strong> Eliminates common API endpoint authorization flaws</li>
+          <li><strong>Consistent Policies:</strong> Uniform security rules across all access patterns</li>
+          <li><strong>Network Call Protection:</strong> Even reverse-engineered requests cannot bypass RLS policies</li>
+        </ul>
+        
+        <h3>2.8 Practical Security Implications</h3>
+        <ul>
+          <li><strong>Progress Tracking:</strong> Users can only upsert/select their own user_progress rows</li>
+          <li><strong>Content Management:</strong> Only admin JWTs pass RLS checks for updates/deletes</li>
+          <li><strong>File Access:</strong> Storage policies ensure only authorized roles can manage files</li>
+          <li><strong>Personalization:</strong> Users can only access their own preferences data</li>
+        </ul>
+        
+        <h3>2.9 When to Use Server-Side Solutions</h3>
+        <p>Use Supabase Edge Functions with Supabase Secrets for:</p>
+        <ul>
+          <li>Operations requiring secret credentials</li>
+          <li>Cross-tenant administrative tasks</li>
+          <li>Batch processing operations that require RLS bypass</li>
+          <li>Any functionality requiring service role privileges</li>
+        </ul>
+        
+        <h3>2.10 Common Security Mistakes to Avoid</h3>
+        <ul>
+          <li>Never disable RLS on tables containing user data</li>
+          <li>Never include the service_role key in frontend code</li>
+          <li>Don't rely solely on client-side checks for security</li>
+          <li>Implement least-privilege policies (start strict, open carefully)</li>
+          <li>Ensure all writes validate ownership or admin role</li>
+          <li>Configure storage bucket policies explicitly</li>
+        </ul>
+        
+        <h3>2.11 Security Checklist</h3>
+        <ul>
+          <li>[ ] RLS enabled on all user data tables</li>
+          <li>[ ] Service role key excluded from client code</li>
+          <li>[ ] Policies follow principle of least privilege</li>
+          <li>[ ] Storage bucket policies properly configured</li>
+          <li>[ ] Admin privileges validated through database roles</li>
+          <li>[ ] All tables have appropriate ownership checks</li>
+          <li>[ ] Authentication properly implemented via useAuth hook</li>
+        </ul>
+        
+        <div class="divider"></div>
+        
+        <h2 id="technology-stack">3. Technology Stack & Architecture</h2>
+        
+        <h3>3.1 Frontend Technologies</h3>
+        <p>The client-side application is built using modern web technologies that ensure performance, maintainability, and user experience:</p>
+        
+        <p><strong>React 18</strong> - The core JavaScript library for building user interfaces</p>
+        <ul>
+          <li>Why React? React provides component-based architecture, virtual DOM for performance, and extensive ecosystem support</li>
+          <li>Features Used: Hooks for state management, Context API for global state, Suspense for loading states</li>
+        </ul>
+        
+        <p><strong>TypeScript</strong> - Static type checking for JavaScript</p>
+        <ul>
+          <li>Benefits: Catches errors at compile time, provides better IDE support, improves code documentation</li>
+          <li>Implementation: All components, hooks, and utilities are fully typed with interfaces and type definitions</li>
+        </ul>
+        
+        <p><strong>Vite</strong> - Modern build tool and development server</p>
+        <ul>
+          <li>Advantages: Lightning-fast hot module replacement, optimized production builds, modern JavaScript features</li>
+          <li>Configuration: Optimized for React with TypeScript support and asset handling</li>
+        </ul>
+        
+        <p><strong>Tailwind CSS</strong> - Utility-first CSS framework</p>
+        <ul>
+          <li>Design System: Custom design tokens defined in index.css and tailwind.config.ts</li>
+          <li>Responsive Design: Mobile-first approach with responsive utilities</li>
+          <li>Dark Mode: Built-in dark/light theme switching capabilities</li>
+        </ul>
+        
+        <p><strong>shadcn/ui</strong> - High-quality, accessible React components</p>
+        <ul>
+          <li>Component Library: Pre-built, customizable components following accessibility standards</li>
+          <li>Styling: Integrates seamlessly with Tailwind CSS for consistent design</li>
+        </ul>
+        
+        <h3>3.2 Backend Infrastructure</h3>
+        <p>The backend leverages Supabase as a Backend-as-a-Service (BaaS) solution:</p>
+        
+        <p><strong>Supabase</strong> - Complete backend platform</p>
+        <ul>
+          <li>Database: PostgreSQL with real-time subscriptions</li>
+          <li>Authentication: Built-in user management with JWT tokens</li>
+          <li>Storage: File storage for videos and documents</li>
+          <li>Edge Functions: Serverless functions for custom logic</li>
+          <li>Real-time: WebSocket connections for live updates</li>
+        </ul>
+        
+        <h3>3.3 Architecture Pattern</h3>
+        <p>The application follows a Client-Server Architecture with these key characteristics:</p>
+        <ul>
+          <li><strong>Frontend (Client):</strong> React SPA handling user interactions and UI rendering</li>
+          <li><strong>Backend (Server):</strong> Supabase managing data, authentication, and business logic</li>
+          <li><strong>Database:</strong> PostgreSQL storing all application data</li>
+          <li><strong>Storage:</strong> Supabase Storage for media files and documents</li>
+          <li><strong>CDN:</strong> Content delivery for optimized asset loading</li>
+        </ul>
+        
+        <div class="divider"></div>
+        
+        <h2 id="frontend">4. Frontend Implementation</h2>
+        
+        <h3>4.1 Component Architecture</h3>
+        <p>The frontend follows a hierarchical component structure that promotes reusability and maintainability:</p>
+        
+        <div class="code-block">
+// Core Components Structure
+src/
+├── components/
+│   ├── ui/              # Reusable UI components (buttons, forms, etc.)
+│   ├── Dashboard.tsx    # Main user dashboard
+│   ├── AuthModal.tsx    # Authentication interface
+│   ├── TutorialViewer.tsx # Video tutorial player
+│   ├── QuizBuilder.tsx  # Interactive quiz interface
+│   └── PersonalizationFlow.tsx # User preference collection
+├── pages/
+│   ├── Index.tsx        # Homepage and user interface
+│   └── AdminPage.tsx    # Administrative panel
+├── hooks/
+│   ├── useAuth.ts       # Authentication state management
+│   ├── useTutorials.ts  # Tutorial data management
+│   └── useFileStorage.ts # File upload/download logic
+└── lib/
+    └── utils.ts         # Utility functions and helpers
+        </div>
+        
+        <h3>4.2 State Management Strategy</h3>
+        <p>The application uses multiple state management approaches depending on the scope:</p>
+        <ul>
+          <li><strong>Local State:</strong> React's useState for component-specific data</li>
+          <li><strong>Global State:</strong> React Context for authentication and user preferences</li>
+          <li><strong>Server State:</strong> TanStack Query for API data caching and synchronization</li>
+          <li><strong>URL State:</strong> React Router for navigation and route parameters</li>
+        </ul>
+        
+        <h3>4.3 Key Frontend Features</h3>
+        
+        <p><strong>Responsive Design Implementation</strong></p>
+        <ul>
+          <li>Mobile-First Approach: All components start with mobile styles and scale up</li>
+          <li>Breakpoint System: Tailwind's responsive utilities (sm:, md:, lg:, xl:)</li>
+          <li>Flexible Layouts: CSS Grid and Flexbox for adaptive content arrangement</li>
+          <li>Touch-Friendly: Optimized for touch interactions on mobile devices</li>
+        </ul>
+        
+        <p><strong>Real-time Updates</strong></p>
+        <ul>
+          <li>Supabase Subscriptions: Live database change notifications</li>
+          <li>Optimistic Updates: Immediate UI feedback before server confirmation</li>
+          <li>Error Recovery: Automatic retry mechanisms for failed operations</li>
+        </ul>
+        
+        <p><strong>Performance Optimizations</strong></p>
+        <ul>
+          <li>Code Splitting: Dynamic imports for route-based splitting</li>
+          <li>Image Optimization: Lazy loading and responsive image sizes</li>
+          <li>Caching Strategy: Intelligent caching of API responses and static assets</li>
+        </ul>
+        
+        <div class="divider"></div>
+        
+        <h2 id="backend">5. Backend Infrastructure</h2>
+        
+        <h3>5.1 Supabase Integration</h3>
+        <p>Supabase serves as the complete backend solution, providing multiple services through a unified API:</p>
+        
+        <p><strong>Database Service</strong></p>
+        <ul>
+          <li><strong>PostgreSQL Database</strong> - The core data storage system
+            <ul>
+              <li>ACID Compliance: Ensures data integrity and consistency</li>
+              <li>JSON Support: Native JSON fields for flexible data structures</li>
+              <li>Full-text Search: Built-in search capabilities across text content</li>
+              <li>Triggers and Functions: Custom database logic for automated processes</li>
+            </ul>
+          </li>
+        </ul>
+        
+        <p><strong>Authentication Service</strong></p>
+        <ul>
+          <li><strong>Supabase Auth</strong> - Comprehensive user management
+            <ul>
+              <li>JWT Tokens: Secure, stateless authentication</li>
+              <li>Row Level Security (RLS): Database-level access control</li>
+              <li>Email Verification: Automated user verification process</li>
+              <li>Password Reset: Secure password recovery workflow</li>
+            </ul>
+          </li>
+        </ul>
+        
+        <p><strong>Storage Service</strong></p>
+        <ul>
+          <li><strong>Supabase Storage</strong> - Scalable file management
+            <ul>
+              <li>Bucket Organization: Separated storage for different file types</li>
+              <li>Access Control: Fine-grained permissions for file access</li>
+              <li>CDN Integration: Global content delivery for fast file access</li>
+              <li>Image Transformations: On-the-fly image resizing and optimization</li>
+            </ul>
+          </li>
+        </ul>
+        
+        <p><strong>Real-time Service</strong></p>
+        <ul>
+          <li><strong>Real-time Subscriptions</strong> - Live data synchronization
+            <ul>
+              <li>WebSocket Connections: Persistent connections for instant updates</li>
+              <li>Channel Subscriptions: Topic-based message broadcasting</li>
+              <li>Presence System: Real-time user activity tracking</li>
+            </ul>
+          </li>
+        </ul>
+        
+        <h3>5.2 API Architecture</h3>
+        <p>The backend API follows RESTful principles with real-time enhancements:</p>
+        
+        <p><strong>Endpoint Structure</strong></p>
+        
+        <p><strong>Authentication:</strong></p>
+        <ul>
+          <li>POST /auth/signup - User registration</li>
+          <li>POST /auth/signin - User login</li>
+          <li>POST /auth/signout - User logout</li>
+          <li>POST /auth/reset-password - Password reset</li>
+        </ul>
+        
+        <p><strong>Tutorials:</strong></p>
+        <ul>
+          <li>GET /tutorials - Fetch all tutorials</li>
+          <li>POST /tutorials - Create new tutorial (admin)</li>
+          <li>PUT /tutorials/:id - Update tutorial (admin)</li>
+          <li>DELETE /tutorials/:id - Delete tutorial (admin)</li>
+        </ul>
+        
+        <p><strong>User Progress:</strong></p>
+        <ul>
+          <li>GET /user_progress - Fetch user progress</li>
+          <li>POST /user_progress - Update progress</li>
+          <li>PUT /user_progress/:id - Modify progress entry</li>
+        </ul>
+        
+        <p><strong>File Management:</strong></p>
+        <ul>
+          <li>POST /storage/upload - Upload files</li>
+          <li>GET /storage/:path - Download files</li>
+          <li>DELETE /storage/:path - Delete files</li>
+        </ul>
+        
+        <h3>5.3 Data Flow Architecture</h3>
+        <ol>
+          <li>Client Request: Frontend sends HTTP request to Supabase</li>
+          <li>Authentication Check: JWT token validation</li>
+          <li>Authorization: RLS policies enforce access control</li>
+          <li>Database Operation: PostgreSQL processes the request</li>
+          <li>Real-time Broadcast: Changes broadcast to subscribed clients</li>
+          <li>Response: JSON response sent back to client</li>
+        </ol>
+        
+        <div class="divider"></div>
+        
+        <h2 id="database">6. Database Design & Structure</h2>
+        
+        <h3>6.1 Entity Relationship Design</h3>
+        <p>The database schema is designed to support the core functionality while maintaining flexibility for future enhancements:</p>
+        
+        <p><strong>Core Tables Structure</strong></p>
+        
+        <p><strong>users (Supabase Auth)</strong></p>
+        <ul>
+          <li>id: UUID (Primary Key)</li>
+          <li>email: VARCHAR(255) (Unique)</li>
+          <li>password: ENCRYPTED</li>
+          <li>created_at: TIMESTAMP</li>
+          <li>email_confirmed_at: TIMESTAMP</li>
+          <li>user_metadata: JSONB (Custom user data)</li>
+        </ul>
+        
+        <p><strong>user_profiles</strong></p>
+        <ul>
+          <li>id: UUID (Primary Key, Foreign Key to users.id)</li>
+          <li>display_name: VARCHAR(100)</li>
+          <li>learning_style: VARCHAR(50)</li>
+          <li>difficulty_preference: VARCHAR(50)</li>
+          <li>content_type_preference: VARCHAR(50)</li>
+          <li>time_availability: VARCHAR(50)</li>
+          <li>created_at: TIMESTAMP</li>
+          <li>updated_at: TIMESTAMP</li>
+        </ul>
+        
+        <p><strong>tutorials</strong></p>
+        <ul>
+          <li>id: UUID (Primary Key)</li>
+          <li>title: VARCHAR(200)</li>
+          <li>description: TEXT</li>
+          <li>video_url: VARCHAR(500)</li>
+          <li>thumbnail_url: VARCHAR(500)</li>
+          <li>duration: INTEGER (in seconds)</li>
+          <li>difficulty_level: VARCHAR(50)</li>
+          <li>category: VARCHAR(100)</li>
+          <li>tags: TEXT[] (Array of tags)</li>
+          <li>created_by: UUID (Foreign Key to users.id)</li>
+          <li>created_at: TIMESTAMP</li>
+          <li>updated_at: TIMESTAMP</li>
+          <li>is_published: BOOLEAN</li>
+        </ul>
+        
+        <p><strong>quizzes</strong></p>
+        <ul>
+          <li>id: UUID (Primary Key)</li>
+          <li>tutorial_id: UUID (Foreign Key to tutorials.id)</li>
+          <li>questions: JSONB (Quiz questions and answers)</li>
+          <li>passing_score: INTEGER</li>
+          <li>created_at: TIMESTAMP</li>
+          <li>updated_at: TIMESTAMP</li>
+        </ul>
+        
+        <p><strong>user_progress</strong></p>
+        <ul>
+          <li>id: UUID (Primary Key)</li>
+          <li>user_id: UUID (Foreign Key to users.id)</li>
+          <li>tutorial_id: UUID (Foreign Key to tutorials.id)</li>
+          <li>progress_percentage: INTEGER (0-100)</li>
+          <li>completed_at: TIMESTAMP (NULL if not completed)</li>
+          <li>quiz_score: INTEGER (NULL if quiz not taken)</li>
+          <li>watch_time: INTEGER (in seconds)</li>
+          <li>last_position: INTEGER (video position in seconds)</li>
+          <li>created_at: TIMESTAMP</li>
+          <li>updated_at: TIMESTAMP</li>
+        </ul>
+        
+        <p><strong>user_preferences</strong></p>
+        <ul>
+          <li>id: UUID (Primary Key)</li>
+          <li>user_id: UUID (Foreign Key to users.id)</li>
+          <li>preference_data: JSONB (Flexible preference storage)</li>
+          <li>created_at: TIMESTAMP</li>
+          <li>updated_at: TIMESTAMP</li>
+        </ul>
+        
+        <h3>6.2 Database Relationships</h3>
+        <ul>
+          <li>One-to-One: users → user_profiles</li>
+          <li>One-to-Many: users → tutorials (created_by relationship)</li>
+          <li>One-to-Many: tutorials → quizzes</li>
+          <li>Many-to-Many: users ↔ tutorials (through user_progress)</li>
+          <li>One-to-One: users → user_preferences</li>
+        </ul>
+        
+        <h3>6.3 Indexing Strategy</h3>
+        <p>For optimal query performance, strategic indexes are implemented:</p>
+        
+        <div class="code-block">
+-- Performance indexes
+CREATE INDEX idx_tutorials_category ON tutorials(category);
+CREATE INDEX idx_tutorials_difficulty ON tutorials(difficulty_level);
+CREATE INDEX idx_user_progress_user_tutorial ON user_progress(user_id, tutorial_id);
+CREATE INDEX idx_user_progress_completion ON user_progress(completed_at);
+
+-- Search indexes
+CREATE INDEX idx_tutorials_search ON tutorials USING GIN(to_tsvector('english', title || ' ' || description));
+        </div>
+        
+        <h3>6.4 Row Level Security (RLS) Policies</h3>
+        <p>Database-level security ensures users can only access their own data:</p>
+        
+        <div class="code-block">
+-- Users can only see their own profile
+CREATE POLICY "Users can view own profile" ON user_profiles
+FOR SELECT USING (auth.uid() = id);
+
+-- Users can only update their own progress
+CREATE POLICY "Users can update own progress" ON user_progress
+FOR ALL USING (auth.uid() = user_id);
+
+-- Only admins can manage tutorials
+CREATE POLICY "Admins can manage tutorials" ON tutorials
+FOR ALL USING (
+  EXISTS (
+    SELECT 1 FROM user_profiles 
+    WHERE id = auth.uid() 
+    AND user_metadata->>'role' = 'admin'
+  )
+);
+
+-- All users can view published tutorials
+CREATE POLICY "Users can view published tutorials" ON tutorials
+FOR SELECT USING (is_published = true);
+        </div>
+        
+        <div class="section-nav">
+          <button class="nav-button" onclick="window.scrollTo(0, 0)">Back to Top</button>
+          <button class="nav-button" onclick="location.href='#authentication'">Continue to Authentication</button>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <h2 id="authentication">7. Authentication & Security</h2>
+        
+        <h3>7.1 Authentication Flow</h3>
+        <p>The authentication system provides secure user management with multiple verification layers:</p>
+        
+        <p><strong>User Registration Process</strong></p>
+        <ol>
+          <li>Input Validation: Frontend validates email format and password strength</li>
+          <li>Supabase Registration: User data sent to Supabase Auth service</li>
+          <li>Email Verification: Automated verification email sent to user</li>
+          <li>Profile Creation: User profile created after email confirmation</li>
+          <li>Personalization Flow: New users guided through preference setup</li>
+        </ol>
+        
+        <p><strong>Login Process</strong></p>
+        <ol>
+          <li>Credential Validation: Email and password verified against database</li>
+          <li>JWT Token Generation: Supabase creates signed JWT token</li>
+          <li>Session Management: Token stored securely in localStorage</li>
+          <li>Automatic Refresh: Tokens automatically refreshed before expiration</li>
+          <li>State Synchronization: User state updated across all components</li>
+        </ol>
+        
+        <h3>7.2 Security Implementation</h3>
+        
+        <p><strong>Password Security</strong></p>
+        <ul>
+          <li>Bcrypt Hashing: Passwords hashed with salt before storage</li>
+          <li>Minimum Requirements: 8 characters minimum length enforced</li>
+          <li>Strength Validation: Frontend checks for password complexity</li>
+        </ul>
+        
+        <p><strong>Token Security</strong></p>
+        <ul>
+          <li>HTTP-Only Storage: Sensitive tokens stored securely</li>
+          <li>Expiration Management: Automatic token refresh before expiration</li>
+          <li>Logout Cleanup: Complete session cleanup on logout</li>
+        </ul>
+        
+        <p><strong>API Security</strong></p>
+        <ul>
+          <li>Rate Limiting: Supabase built-in request rate limiting</li>
+          <li>CORS Configuration: Proper cross-origin request handling</li>
+          <li>SQL Injection Protection: Parameterized queries prevent injection</li>
+          <li>XSS Protection: Input sanitization and output encoding</li>
+        </ul>
+        
+        <h3>7.3 Session Management</h3>
+        <p>The authentication system maintains user sessions across browser sessions and tabs:</p>
+        
+        <div class="code-block">
+// useAuth.ts implementation
+export const useAuth = () => {
+  const [user, setUser] = useState<User | null>(null);
+  const [session, setSession] = useState<Session | null>(null);
+  
+  useEffect(() => {
+    // Listen for auth state changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        setSession(session);
+        setUser(session?.user ?? null);
+      }
+    );
+    
+    // Check for existing session on page load
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      setUser(session?.user ?? null);
+    });
+    
+    return () => subscription.unsubscribe();
+  }, []);
+};
+        </div>
+        
+        <h3>7.4 Authorization Levels</h3>
+        <p>The system implements role-based access control:</p>
+        <ul>
+          <li><strong>Anonymous Users:</strong> Can view landing page only</li>
+          <li><strong>Registered Users:</strong> Full access to tutorials and progress tracking</li>
+          <li><strong>Admin Users:</strong> Additional access to content management and user administration</li>
+        </ul>
+        
+        <div class="divider"></div>
+        
+        <h2 id="admin">8. Admin Panel & Management</h2>
+        
+        <h3>8.1 Administrative Interface</h3>
+        <p>The admin panel provides comprehensive management capabilities for system administrators:</p>
+        
+        <p><strong>Admin Dashboard Features</strong></p>
+        
+        <p><strong>User Management</strong></p>
+        <ul>
+          <li>User List: Complete overview of all registered users</li>
+          <li>User Details: Individual user profiles and progress statistics</li>
+          <li>Account Actions: Ability to activate/deactivate user accounts</li>
+          <li>Role Management: Assign and modify user roles</li>
+        </ul>
+        
+        <p><strong>Content Management</strong></p>
+        <ul>
+          <li>Tutorial Creation: Form-based interface for adding new tutorials</li>
+          <li>Content Editing: In-place editing of tutorial titles, descriptions, and metadata</li>
+          <li>Video Upload: Integrated file upload with progress tracking</li>
+          <li>Publishing Control: Publish/unpublish tutorials for public access</li>
+        </ul>
+        
+        <p><strong>Analytics Dashboard</strong></p>
+        <ul>
+          <li>User Statistics: Total users, active users, completion rates</li>
+          <li>Content Performance: Most viewed tutorials, completion rates per tutorial</li>
+          <li>System Health: Database performance, storage usage, error rates</li>
+        </ul>
+        
+        <h3>8.2 Admin Authentication</h3>
+        <p>Admin access is controlled through enhanced security measures:</p>
+        
+        <div class="code-block">
+// AdminAuth.tsx - Admin verification
+const AdminAuth = ({ children }) => {
+  const { user } = useAuth();
+  const [isAdmin, setIsAdmin] = useState(false);
+  
+  useEffect(() => {
+    if (user) {
+      // Check admin status from user metadata
+      const adminStatus = user.user_metadata?.role === 'admin';
+      setIsAdmin(adminStatus);
+    }
+  }, [user]);
+  
+  if (!isAdmin) {
+    return <AdminLogin />;
+  }
+  
+  return children;
+};
+        </div>
+        
+        <h3>8.3 Content Management Workflow</h3>
+        <ul>
+          <li>Content Creation: Admin creates tutorial with metadata</li>
+          <li>File Upload: Video files uploaded to Supabase Storage</li>
+          <li>Content Review: Preview functionality for quality assurance</li>
+          <li>Publishing: Content made available to users</li>
+          <li>Performance Monitoring: Track engagement and completion rates</li>
+        </ul>
+        
+        <h3>8.4 File Management System</h3>
+        <p>The admin panel includes sophisticated file management capabilities:</p>
+        
+        <p><strong>Upload Process</strong></p>
+        
+        <div class="code-block">
+// FileUpload.tsx - Secure file upload
+const uploadFile = async (file: File, bucket: string) => {
+  const fileExt = file.name.split('.').pop();
+  const fileName = `${Math.random()}.${fileExt}`;
+  const filePath = `${bucket}/${fileName}`;
+  
+  const { data, error } = await supabase.storage
+    .from(bucket)
+    .upload(filePath, file);
+    
+  if (error) throw error;
+  
+  // Generate public URL for uploaded file
+  const { data: { publicUrl } } = supabase.storage
+    .from(bucket)
+    .getPublicUrl(filePath);
+    
+  return publicUrl;
+};
+        </div>
+        
+        <p><strong>Storage Organization</strong></p>
+        <ul>
+          <li>Videos Bucket: Tutorial video files with CDN optimization</li>
+          <li>Thumbnails Bucket: Video preview images with automatic compression</li>
+          <li>Documents Bucket: PDF guides and supplementary materials</li>
+          <li>User Uploads: User-generated content with appropriate permissions</li>
+        </ul>
+        
+        <div class="section-nav">
+          <button class="nav-button" onclick="window.scrollTo(0, 0)">Back to Top</button>
+          <button class="nav-button" onclick="location.href='#personalization'">Continue to Personalization</button>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <h2 id="personalization">9. Personalization Engine</h2>
+        
+        <h3>9.1 Preference Collection System</h3>
+        <p>The personalization system begins with a comprehensive onboarding flow that collects user preferences:</p>
+        
+        <p><strong>PersonalizationFlow Component</strong></p>
+        <p>The onboarding process uses a multi-step questionnaire:</p>
+        
+        <div class="code-block">
+const questions = [
+  {
+    id: 'learning_style',
+    title: 'How do you prefer to learn?',
+    options: [
+      { value: 'visual', label: 'Visual Learning', description: 'Learn through images, diagrams, and videos' },
+      { value: 'auditory', label: 'Auditory Learning', description: 'Learn through listening and discussion' },
+      { value: 'kinesthetic', label: 'Hands-on Learning', description: 'Learn through practice and experimentation' },
+      { value: 'reading', label: 'Reading/Writing', description: 'Learn through text and written materials' }
+    ]
+  },
+  {
+    id: 'difficulty_preference',
+    title: 'What difficulty level do you prefer?',
+    options: [
+      { value: 'beginner', label: 'Beginner', description: 'I\'m new to this subject' },
+      { value: 'intermediate', label: 'Intermediate', description: 'I have some experience' },
+      { value: 'advanced', label: 'Advanced', description: 'I want challenging content' }
+    ]
+  },
+  // Additional questions...
+];
+        </div>
+        
+        <h3>9.2 Preference Impact on User Experience</h3>
+        <p>User preferences directly influence multiple aspects of their learning experience:</p>
+        
+        <p><strong>Content Filtering</strong></p>
+        <ul>
+          <li>Difficulty Matching: Tutorials filtered by user's preferred difficulty level</li>
+          <li>Format Preference: Video-heavy vs. text-heavy content based on learning style</li>
+          <li>Duration Filtering: Content length matching user's available time slots</li>
+        </ul>
+        
+        <p><strong>Dashboard Customization</strong></p>
+        <ul>
+          <li>Widget Arrangement: Dashboard layout adapted to user preferences</li>
+          <li>Progress Visualization: Charts and graphs style matching user's visual preferences</li>
+          <li>Recommendation Algorithm: Suggested content based on preference profile</li>
+        </ul>
+        
+        <p><strong>Learning Path Generation</strong></p>
+        
+        <div class="code-block">
+// generatePersonalizedPath.ts
+const generateLearningPath = (userPreferences, availableTutorials) => {
+  return availableTutorials
+    .filter(tutorial => tutorial.difficulty === userPreferences.difficulty_preference)
+    .filter(tutorial => tutorial.duration <= userPreferences.time_availability)
+    .filter(tutorial => tutorial.category.includes(userPreferences.topics_of_interest))
+    .sort((a, b) => calculateRelevanceScore(a, userPreferences) - calculateRelevanceScore(b, userPreferences));
+};
+        </div>
+        
+        <h3>9.3 Adaptive Learning Features</h3>
+        <p>The system continuously adapts to user behavior and performance:</p>
+        
+        <p><strong>Progress-Based Adaptations</strong></p>
+        <ul>
+          <li>Difficulty Adjustment: Automatic difficulty progression based on completion rates</li>
+          <li>Content Recommendations: Machine learning-style suggestions based on viewing history</li>
+          <li>Time Management: Optimal session length suggestions based on engagement patterns</li>
+        </ul>
+        
+        <p><strong>Behavioral Learning</strong></p>
+        <p>The system tracks user interactions to improve personalization:</p>
+        <ul>
+          <li>Engagement Metrics: Time spent on different content types</li>
+          <li>Completion Patterns: Which tutorials users complete vs. abandon</li>
+          <li>Quiz Performance: Areas where users struggle or excel</li>
+          <li>Navigation Patterns: How users move through the application</li>
+        </ul>
+        
+        <div class="divider"></div>
+        
+        <h2 id="video">10. Video Management System</h2>
+        
+        <h3>10.1 Video Player Implementation</h3>
+        <p>The tutorial video player is built with advanced functionality for educational content:</p>
+        
+        <p><strong>VideoPlayer Component Features</strong></p>
+        
+        <div class="code-block">
+// VideoPlayer.tsx - Advanced video controls
+const VideoPlayer = ({ videoUrl, tutorialId, onProgressUpdate }) => {
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+  
+  const handleTimeUpdate = (e) => {
+    const current = e.target.currentTime;
+    const total = e.target.duration;
+    const progressPercent = (current / total) * 100;
+    
+    setCurrentTime(current);
+    
+    // Update progress in database every 10 seconds
+    if (current % 10 === 0) {
+      onProgressUpdate(tutorialId, progressPercent, current);
+    }
+  };
+  
+  return (
+    <video
+      controls
+      onTimeUpdate={handleTimeUpdate}
+      onPlay={() => setIsPlaying(true)}
+      onPause={() => setIsPlaying(false)}
+      onEnded={() => onProgressUpdate(tutorialId, 100, duration)}
+    >
+      <source src={videoUrl} type="video/mp4" />
+    </video>
+  );
+};
+        </div>
+        
+        <h3>10.2 Video Processing Pipeline</h3>
+        <ol>
+          <li>Upload: Admin uploads video file through secure form</li>
+          <li>Storage: File stored in Supabase Storage with automatic compression</li>
+          <li>Metadata Extraction: Video duration, resolution, and format detected</li>
+          <li>Thumbnail Generation: Automatic thumbnail creation at multiple time points</li>
+          <li>CDN Distribution: Video distributed through global CDN for fast loading</li>
+        </ol>
+        
+        <h3>10.3 Video File Management</h3>
+        <p>The VideoFileManager component provides comprehensive video administration:</p>
+        
+        <p><strong>Features for Administrators</strong></p>
+        <ul>
+          <li>Bulk Upload: Multiple video files uploaded simultaneously</li>
+          <li>Format Conversion: Automatic conversion to web-optimized formats</li>
+          <li>Quality Settings: Multiple quality options for different bandwidth scenarios</li>
+          <li>Usage Analytics: View count, completion rates, and engagement metrics</li>
+        </ul>
+        
+        <p><strong>User Video Experience</strong></p>
+        <ul>
+          <li>Adaptive Streaming: Video quality adjusts based on connection speed</li>
+          <li>Resume Playback: Videos resume from last watched position</li>
+          <li>Speed Controls: Variable playback speed for different learning preferences</li>
+          <li>Subtitle Support: Closed captioning for accessibility</li>
+        </ul>
+        
+        <div class="section-nav">
+          <button class="nav-button" onclick="window.scrollTo(0, 0)">Back to Top</button>
+          <button class="nav-button" onclick="location.href='#progress'">Continue to Progress Tracking</button>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <h2 id="progress">11. Progress Tracking & Analytics</h2>
+        
+        <h3>11.1 Individual Progress Tracking</h3>
+        <p>The system provides detailed progress tracking for each user:</p>
+        
+        <p><strong>Progress Calculation Algorithm</strong></p>
+        
+        <div class="code-block">
+// calculateProgress.ts
+const calculateUserProgress = (userProgress, tutorials) => {
+  const totalTutorials = tutorials.length;
+  const completedTutorials = userProgress.filter(p => p.progress_percentage === 100).length;
+  const inProgressTutorials = userProgress.filter(p => p.progress_percentage > 0 && p.progress_percentage < 100).length;
+  
+  const overallProgress = (completedTutorials / totalTutorials) * 100;
+  
+  return {
+    total: totalTutorials,
+    completed: completedTutorials,
+    inProgress: inProgressTutorials,
+    overallPercentage: Math.round(overallProgress)
+  };
+};
+        </div>
+        
+        <h3>11.2 Real-time Progress Updates</h3>
+        <p>Progress is tracked and updated in real-time as users interact with content:</p>
+        
+        <div class="code-block">
+// TutorialViewer.tsx - Progress tracking
+const updateProgress = async (tutorialId: string, progressPercent: number, currentTime: number) => {
+  const { data, error } = await supabase
+    .from('user_progress')
+    .upsert({
+      user_id: user?.id,
+      tutorial_id: tutorialId,
+      progress_percentage: Math.round(progressPercent),
+      last_position: Math.round(currentTime),
+      completed_at: progressPercent >= 100 ? new Date().toISOString() : null,
+      updated_at: new Date().toISOString()
+    });
+    
+  // Broadcast progress update to other components
+  if (!error) {
+    queryClient.invalidateQueries(['user-progress']);
+  }
+};
+        </div>
+        
+        <h3>11.3 Dashboard Analytics</h3>
+        <p>The user dashboard provides comprehensive learning analytics:</p>
+        
+        <p><strong>Progress Visualization</strong></p>
+        <ul>
+          <li>Overall Progress Bar: Visual representation of total completion percentage</li>
+          <li>Tutorial Grid: Individual tutorial progress with visual indicators</li>
+          <li>Streak Tracking: Consecutive days of learning activity</li>
+          <li>Time Investment: Total time spent learning with weekly/monthly breakdowns</li>
+        </ul>
+        
+        <p><strong>Achievement System</strong></p>
+        
+        <div class="code-block">
+// achievements.ts
+const checkAchievements = (userProgress) => {
+  const achievements = [];
+  
+  if (userProgress.completed >= 5) {
+    achievements.push({
+      title: 'Learning Enthusiast',
+      description: 'Completed 5 tutorials',
+      icon: '🎓',
+      unlockedAt: new Date()
+    });
+  }
+  
+  if (userProgress.streakDays >= 7) {
+    achievements.push({
+      title: 'Week Warrior',
+      description: '7 days of consistent learning',
+      icon: '🔥',
+      unlockedAt: new Date()
+    });
+  }
+  
+  return achievements;
+};
+        </div>
+        
+        <h3>11.4 Administrative Analytics</h3>
+        <p>Administrators have access to comprehensive system-wide analytics:</p>
+        
+        <p><strong>User Engagement Metrics</strong></p>
+        <ul>
+          <li>Active Users: Daily, weekly, and monthly active user counts</li>
+          <li>Session Duration: Average time spent per session</li>
+          <li>Retention Rates: User return rates after initial signup</li>
+          <li>Completion Rates: Percentage of users completing tutorials</li>
+        </ul>
+        
+        <p><strong>Content Performance</strong></p>
+        <ul>
+          <li>Popular Content: Most viewed and highest-rated tutorials</li>
+          <li>Completion Analysis: Which tutorials have highest completion rates</li>
+          <li>User Feedback: Ratings and comments on tutorial effectiveness</li>
+          <li>Performance Bottlenecks: Identifying content that users struggle with</li>
+        </ul>
+        
+        <div class="divider"></div>
+        
+        <h2 id="realtime">12. Real-time Features</h2>
+        
+        <h3>12.1 Live Data Synchronization</h3>
+        <p>The application uses Supabase's real-time capabilities to provide instant updates:</p>
+        
+        <p><strong>Real-time Subscriptions</strong></p>
+        
+        <div class="code-block">
+// useRealTimeUpdates.ts
+const useRealTimeUpdates = (userId: string) => {
+  useEffect(() => {
+    // Subscribe to user progress changes
+    const progressSubscription = supabase
+      .channel('user-progress-changes')
+      .on('postgres_changes', {
+        event: '*',
+        schema: 'public',
+        table: 'user_progress',
+        filter: `user_id=eq.${userId}`
+      }, (payload) => {
+        // Update local state with new progress data
+        queryClient.setQueryData(['user-progress'], (oldData) => 
+          updateProgressData(oldData, payload.new)
+        );
+      })
+      .subscribe();
+      
+    // Subscribe to tutorial updates
+    const tutorialSubscription = supabase
+      .channel('tutorial-changes')
+      .on('postgres_changes', {
+        event: '*',
+        schema: 'public',
+        table: 'tutorials'
+      }, (payload) => {
+        queryClient.invalidateQueries(['tutorials']);
+      })
+      .subscribe();
+      
+    return () => {
+      progressSubscription.unsubscribe();
+      tutorialSubscription.unsubscribe();
+    };
+  }, [userId]);
+};
+        </div>
+        
+        <h3>12.2 Live Admin Updates</h3>
+        <p>Administrators see real-time updates of user activity:</p>
+        <ul>
+          <li>User Registration: New user signups appear immediately</li>
+          <li>Progress Updates: User progress changes reflected in admin dashboard</li>
+          <li>Content Interactions: Real-time view of which content is being accessed</li>
+        </ul>
+        
+        <h3>12.3 Optimistic Updates</h3>
+        <p>The frontend provides immediate feedback through optimistic updates:</p>
+        
+        <div class="code-block">
+// optimisticUpdates.ts
+const useOptimisticProgress = () => {
+  const [optimisticProgress, setOptimisticProgress] = useState({});
+  
+  const updateProgressOptimistically = (tutorialId, newProgress) => {
+    // Immediately update UI
+    setOptimisticProgress(prev => ({
+      ...prev,
+      [tutorialId]: newProgress
+    }));
+    
+    // Then sync with server
+    updateProgressOnServer(tutorialId, newProgress)
+      .catch(() => {
+        // Revert optimistic update on error
+        setOptimisticProgress(prev => {
+          const updated = { ...prev };
+          delete updated[tutorialId];
+          return updated;
+        });
+      });
+  };
+  
+  return { optimisticProgress, updateProgressOptimistically };
+};
+        </div>
+        
+        <div class="section-nav">
+          <button class="nav-button" onclick="window.scrollTo(0, 0)">Back to Top</button>
+          <button class="nav-button" onclick="location.href='#deployment'">Continue to Deployment</button>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <h2 id="deployment">13. Deployment & Scalability</h2>
+        
+        <h3>13.1 Production Deployment</h3>
+        <p>The application is deployed using modern cloud infrastructure for optimal performance:</p>
+        
+        <p><strong>Hosting Architecture</strong></p>
+        <ul>
+          <li>Frontend Hosting: Static site deployment with global CDN</li>
+          <li>Backend Services: Supabase managed infrastructure</li>
+          <li>Database: PostgreSQL with automatic scaling and backups</li>
+          <li>File Storage: Global CDN with edge caching for video content</li>
+        </ul>
+        
+        <p><strong>Performance Optimizations</strong></p>
+        
+        <div class="code-block">
+// Performance optimizations implemented:
+
+// 1. Code Splitting
+const AdminPage = lazy(() => import('./pages/AdminPage'));
+const TutorialViewer = lazy(() => import('./components/TutorialViewer'));
+
+// 2. Image Optimization
+const OptimizedImage = ({ src, alt, ...props }) => (
+  <img
+    src={src}
+    alt={alt}
+    loading="lazy"
+    {...props}
+  />
+);
+
+// 3. Query Optimization
+const useTutorials = () => {
+  return useQuery({
+    queryKey: ['tutorials'],
+    queryFn: fetchTutorials,
+    staleTime: 5 * 60 * 1000, // 5 minutes
+    cacheTime: 10 * 60 * 1000, // 10 minutes
+  });
+};
+        </div>
+        
+        <h3>13.2 Scalability Considerations</h3>
+        <p>The architecture is designed to handle growth in users and content:</p>
+        
+        <p><strong>Database Scaling</strong></p>
+        <ul>
+          <li>Connection Pooling: Efficient database connection management</li>
+          <li>Query Optimization: Indexed queries for fast data retrieval</li>
+          <li>Read Replicas: Separate read/write operations for better performance</li>
+          <li>Caching Strategy: Redis caching for frequently accessed data</li>
+        </ul>
+        
+        <p><strong>CDN Strategy</strong></p>
+        <ul>
+          <li>Global Distribution: Video content served from edge locations</li>
+          <li>Compression: Automatic image and video compression</li>
+          <li>Caching Headers: Optimal cache policies for different content types</li>
+          <li>Bandwidth Optimization: Adaptive streaming based on user connection</li>
+        </ul>
+        
+        <h3>13.3 Monitoring and Maintenance</h3>
+        <p>Comprehensive monitoring ensures system reliability:</p>
+        
+        <p><strong>Performance Monitoring</strong></p>
+        <ul>
+          <li>Real-time Metrics: Database query performance and response times</li>
+          <li>Error Tracking: Automatic error detection and alerting</li>
+          <li>User Analytics: Usage patterns and performance bottlenecks</li>
+          <li>Uptime Monitoring: 24/7 availability monitoring with instant alerts</li>
+        </ul>
+        
+        <p><strong>Security Monitoring</strong></p>
+        <ul>
+          <li>Authentication Logs: Track login attempts and security events</li>
+          <li>API Usage: Monitor for unusual API usage patterns</li>
+          <li>Database Security: Regular security audits and vulnerability assessments</li>
+          <li>File Upload Security: Malware scanning and file type validation</li>
+        </ul>
+        
+        <div class="divider"></div>
+        
+        <h2 id="innovation">14. Technical Innovation & Best Practices</h2>
+        
+        <h3>14.1 Code Quality Standards</h3>
+        <p>The project implements industry best practices for maintainable, scalable code:</p>
+        
+        <p><strong>TypeScript Implementation</strong></p>
+        
+        <div class="code-block">
+// Type safety throughout the application
+interface Tutorial {
+  id: string;
+  title: string;
+  description: string;
+  video_url: string;
+  duration: number;
+  difficulty_level: 'beginner' | 'intermediate' | 'advanced';
+  category: string;
+  tags: string[];
+  created_at: string;
+  is_published: boolean;
+}
+
+interface UserProgress {
+  id: string;
+  user_id: string;
+  tutorial_id: string;
+  progress_percentage: number;
+  completed_at: string | null;
+  quiz_score: number | null;
+  watch_time: number;
+  last_position: number;
+}
+        </div>
+        
+        <p><strong>Error Handling Strategy</strong></p>
+        
+        <div class="code-block">
+// Comprehensive error handling
+const handleAsyncOperation = async (operation: () => Promise<any>) => {
+  try {
+    const result = await operation();
+    return { data: result, error: null };
+  } catch (error) {
+    console.error('Operation failed:', error);
+    
+    // User-friendly error messages
+    const userMessage = error.message.includes('network') 
+      ? 'Network connection issue. Please try again.'
+      : 'Something went wrong. Please try again later.';
+      
+    toast.error(userMessage);
+    return { data: null, error: userMessage };
+  }
+};
+        </div>
+        
+        <h3>14.2 Accessibility Features</h3>
+        <p>The application is built with accessibility as a core requirement:</p>
+        
+        <p><strong>Screen Reader Support</strong></p>
+        <ul>
+          <li>Semantic HTML: Proper heading hierarchy and landmark elements</li>
+          <li>ARIA Labels: Descriptive labels for interactive elements</li>
+          <li>Focus Management: Logical tab order and focus indicators</li>
+          <li>Alt Text: Comprehensive image descriptions</li>
+        </ul>
+        
+        <p><strong>Keyboard Navigation</strong></p>
+        
+        <div class="code-block">
+// Keyboard accessibility implementation
+const KeyboardNavigable = ({ children, onSelect }) => {
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      onSelect();
+    }
+  };
+  
+  return (
+    <div 
+      role="button"
+      tabIndex={0}
+      onKeyPress={handleKeyPress}
+      onClick={onSelect}
+    >
+      {children}
+    </div>
+  );
+};
+        </div>
+        
+        <p><strong>Color Contrast & Visual Design</strong></p>
+        <ul>
+          <li>WCAG 2.1 Compliance: Color contrast ratios meet accessibility standards</li>
+          <li>Dark/Light Mode: Consistent accessibility across theme variations</li>
+          <li>Text Sizing: Scalable font sizes that respect user preferences</li>
+          <li>Motion Reduction: Respect for user motion preferences</li>
+        </ul>
+        
+        <h3>14.3 Future Enhancements & Extensibility</h3>
+        
+        <p><strong>Planned Features</strong></p>
+        <p>The architecture supports future enhancements without major restructuring:</p>
+        
+        <p><strong>Advanced Analytics</strong></p>
+        <ul>
+          <li>Machine Learning Integration: AI-powered learning path recommendations</li>
+          <li>Predictive Analytics: Identify users at risk of dropping out</li>
+          <li>A/B Testing Framework: Test different UI/UX approaches</li>
+          <li>Advanced Reporting: Detailed analytics for educational institutions</li>
+        </ul>
+        
+        <p><strong>Social Learning Features</strong></p>
+        <ul>
+          <li>Discussion Forums: Community discussions around tutorials</li>
+          <li>Peer Learning: Study groups and collaborative learning</li>
+          <li>Mentorship Program: Connect learners with experienced practitioners</li>
+          <li>Social Progress Sharing: Achievement sharing and friendly competition</li>
+        </ul>
+        
+        <p><strong>Mobile Application</strong></p>
+        <ul>
+          <li>React Native App: Native mobile experience</li>
+          <li>Offline Capability: Download tutorials for offline viewing</li>
+          <li>Push Notifications: Learning reminders and achievement notifications</li>
+          <li>Mobile-Optimized Player: Touch-friendly video controls</li>
+        </ul>
+        
+        <p><strong>API Extensibility</strong></p>
+        <p>The system is designed for easy integration with external services:</p>
+        
+        <div class="code-block">
+// Plugin architecture for external integrations
+interface LearningPlugin {
+  name: string;
+  version: string;
+  initialize: (config: any) => Promise<void>;
+  processContent: (content: Tutorial) => Promise<Tutorial>;
+  trackProgress: (progress: UserProgress) => Promise<void>;
+}
+
+const PluginManager = {
+  plugins: new Map<string, LearningPlugin>(),
+  
+  register: (plugin: LearningPlugin) => {
+    PluginManager.plugins.set(plugin.name, plugin);
+  },
+  
+  executeHook: async (hookName: string, data: any) => {
+    for (const plugin of PluginManager.plugins.values()) {
+      if (plugin[hookName]) {
+        await plugin[hookName](data);
+      }
+    }
+  }
+};
+        </div>
+        
+        <div class="section-nav">
+          <button class="nav-button" onclick="window.scrollTo(0, 0)">Back to Top</button>
+          <button class="nav-button" onclick="location.href='#conclusion'">Continue to Conclusion</button>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <h2 id="conclusion">15. Conclusion</h2>
+        
+        <h3>15.1 Key Technical Achievements</h3>
+        <ul>
+          <li>Scalable Architecture: Component-based frontend with serverless backend</li>
+          <li>Real-time Capabilities: Instant updates across all user sessions</li>
+          <li>Personalization Engine: Adaptive content delivery based on user preferences</li>
+          <li>Comprehensive Security: Multi-layer security with database-level access control</li>
+          <li>Performance Optimization: CDN delivery, caching strategies, and code splitting</li>
+          <li>Accessibility Compliance: WCAG 2.1 compliant interface design</li>
+          <li>Admin Management: Complete content and user management system</li>
+          <li>Analytics Integration: Detailed progress tracking and system analytics</li>
+        </ul>
+        
+        <h3>15.2 Project Impact</h3>
+        <p>The system successfully addresses the core challenges of online education:</p>
+        <ul>
+          <li>Engagement: Personalized content keeps users engaged longer</li>
+          <li>Scalability: Architecture supports unlimited users and content</li>
+          <li>Accessibility: Inclusive design ensures broad usability</li>
+          <li>Administration: Streamlined content management reduces operational overhead</li>
+          <li>Analytics: Data-driven insights improve educational outcomes</li>
+        </ul>
+        
+        <p>This implementation demonstrates proficiency in modern web development practices, database design, user experience design, and system architecture - providing a solid foundation for a career in software development and educational technology.</p>
+        
+        <p>This documentation serves as a comprehensive guide to understanding, maintaining, and extending the Personalized Learning Management System. The architecture and implementation patterns demonstrated here can be applied to similar educational technology projects and scaled to meet growing user demands.</p>
+        
+        <div class="divider"></div>
+        
+        <p><em>Learnmate Complete User Manual v1.0 • Last updated: October 26, 2023</em></p>
+        
+        <div class="section-nav">
+          <button class="nav-button" onclick="window.scrollTo(0, 0)">Back to Top</button>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
